@@ -34,28 +34,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('resetProgress').addEventListener('click', () => {
         if(confirm("Are you sure you want to reset all completed activities?")){
             localStorage.clear();
-            document.querySelectorAll('.activity-list li').forEach(li => li.classList.remove('completed'));
-        }
-    });
-
-    // Export progress
-    document.getElementById('exportProgress').addEventListener('click', () => {
-        let csv = "Week,Activity,Status\n";
-        activityLists.forEach(section => {
-            const week = section.previousElementSibling ? section.previousElementSibling.textContent : "Evaluation";
-            section.querySelectorAll('li').forEach(li => {
-                const status = li.classList.contains('completed') ? "Completed" : "Pending";
-                csv += `"${week}","${li.textContent}","${status}"\n`;
-            });
-        });
-        const blob = new Blob([csv], {type: "text/csv"});
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = "RAWE_402_Progress.csv";
-        a.click();
-        URL.revokeObjectURL(url);
-    });
-
-    loadProgress();
-});
+            document.querySelectorAll('.activity-list li').forEach(li => li.classList.remove('
